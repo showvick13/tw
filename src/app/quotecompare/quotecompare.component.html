@@ -1,0 +1,261 @@
+<div class="d-flex" id="wrapper" style="background:#fff;">
+
+    <!-- Sidebar -->
+    <div class="bg-light border-right col-md-2" id="sidebar-wrapper">
+        <div class="sidebar-heading hidden-xs-down"><img src="assets/quote/images/logo.png"></div>
+		<form id="quoteModifyForm" [formGroup]="quoteModifyForm" (ngSubmit)="quoteModifySubmit()">
+		<ngb-accordion #acc="ngbAccordion" activeIds="config-panel-one" *ngIf="showquoteData">
+            <ngb-panel title="Policy Details" id="config-panel-one">
+                <ng-template ngbPanelContent>
+					
+					<div class="col-md-12" [ngStyle]="{'display':isRenewal==false ? 'none' : '' }">
+						<label for="country">Registration Date</label>
+					</div>
+					<div class="col-md-12" [ngStyle]="{'display':isRenewal==false ? 'none' : '' }">
+						<input type="text" formControlName="modifyRegistrationDate" class="form-control calander" placeholder="yyyy-mm-dd" ngbDatepicker #r="ngbDatepicker" (click)="r.toggle()"/>
+					</div>
+					<div class="col-md-12" [ngStyle]="{'display':isRenewal==false ? 'none' : '' }">
+						<label for="country">Prev. Expiry Date</label>
+					</div>
+					<div class="col-md-12" [ngStyle]="{'display':isRenewal==false ? 'none' : '' }">
+						<input type="text" [minDate]="currDate" formControlName="modifyExpiryDate" class="form-control calander" placeholder="yyyy-mm-dd" ngbDatepicker #e="ngbDatepicker" (click)="e.toggle()"/>
+					</div>
+					<div class="col-md-12" [ngStyle]="{'display':isRenewal==false ? 'none' : '' }">
+						<label for="country">Prev. Insurer</label>
+					</div>
+					<div class="col-md-12" [ngStyle]="{'display':isRenewal==false ? 'none' : '' }">
+						<select class="custom-select " id="country" required="">
+							<option value="">Select Insurer</option>
+							<option>HDFC</option>
+						</select>
+					</div>
+					<div class="col-md-12">
+						<label for="firstName">IDV between<small> (10-100000) </small></label>
+						<input type="text" formControlName="modifyIDV" class="form-control" id="firstName" placeholder="" value="" required="">
+					</div>
+					<div class="col-md-12">
+						<label for="country">Manufacture Date</label>
+					</div>
+					<div class="col-md-12">
+						<select class="small-select custom-select" formControlName="modifyManufacMM">
+							<option value="1">Jan</option>
+							<option value="2">Feb</option>
+							<option value="3">Mar</option>
+							<option value="4">Apr</option>
+							<option value="5">May</option>
+							<option value="6">Jun</option>
+							<option value="7">Jul</option>
+							<option value="8">Aug</option>
+							<option value="9">Sep</option>
+							<option value="10">Oct</option>
+							<option value="11">Nov</option>
+							<option value="12">Dec</option>
+						</select>
+						<select class="small-select custom-select" formControlName="modifyManufacYY">
+							<option *ngFor="let item of maufacYear">{{item}}</option>
+						</select>
+					</div>
+                </ng-template>
+            </ngb-panel>
+            <ngb-panel title="Claim Details" [ngStyle]="{'display':isRenewal==false ? 'none' : '' }">
+                <ng-template ngbPanelContent>
+                    <label for="country">Last Claim Made</label>
+                    <select class="custom-select d-block w-100" id="country" required="">
+                        <option value="">Never</option>
+                        <option>2018</option>
+                    </select>
+                </ng-template>
+            </ngb-panel>
+            
+
+        </ngb-accordion>
+		<button type="submit" class="btn buy-now btn-sm" >Calculate</button>
+		</form>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper" class="col-md-10">
+
+        <div class="container-fluid">
+
+            <div class="row">
+
+                <div class="col-md-8 pull-left" style="margin:15px 0;" *ngIf="showquoteData">
+                    <div class="panel">
+                        <h2>Two Wheeler Details <a class="text-link float-right btn btn-primary" [routerLink]="['/']" [queryParams]="{ edit: 'Y' }">Edit Detail</a></h2>
+                        <div class="pull-left" style="clear: both;  padding: 0 10px 0px; line-height: 25px;">
+                            <span style="font-size: 12px;"><b>Bike: </b>{{quoteJson.bike_fullname}}</span>
+                        </div>
+						<div class="pull-left" style="clear: both;  padding: 0 10px 0px; line-height: 25px;" [ngStyle]="{'display':isRenewal==false ? 'none' : '' }">
+                            <span style="font-size: 12px;"><b>Policy Expiry Date: </b>{{quoteJson.policy_expiry_date.day}}/{{quoteJson.policy_expiry_date.month}}/{{quoteJson.policy_expiry_date.year}}</span>
+                        </div>
+						<div class="pull-left" style="clear: both;  padding: 0 10px 0px; line-height: 25px;" [ngStyle]="{'display':isRenewal==false ? 'none' : '' }">
+                            <span style="font-size: 12px;"><b>Registration Date: </b>{{quoteJson.registration_date.day}}/{{quoteJson.registration_date.month}}/{{quoteJson.registration_date.year}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 pull-right" style="margin:15px 0;">
+                    <div class="panel-a">
+                        <h2>Add-on Details</h2>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" checked class="custom-control-input" id="same-address">
+                            <label class="custom-control-label" for="same-address">Zero Depreciation</label>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-5 ">
+                    Showing results from <span id="lblNoOfPremiums">{{countResultPremium}}</span>&nbsp;insurers
+					<a class="hidden-lg-down btn btn-primary" (click)="open(breakupContent)">Modify</a>
+                    <br>
+                    <span style="font-size: 12px; padding-left: 10px; color: #a5a5a5;">(All prices are inclusive of taxes.)</span>
+				</div>
+                <div class="col-md-6 no-padding" style="font-size: 12px; color: #000;">
+
+                    <p class="hidden-xs-down" style="font-size: 12px;font-weight: bold;margin-bottom: 6px;">
+
+                        Renew Your Two Wheeler Policy for 3 Years and Avail up to 15% Discount on Premium.</p>
+
+                </div>
+
+                <div class="col-md-4 pull-right">
+                    <!--<p>
+                        <a class="pull-right text_4 btn btn-primary" style="padding-left:5px; font-size: 13px;" data-toggle="modal" data-target=".bs-example-modal-sm" onclick="openIDVchangepopup();"><span class="glyphicon glyphicon-edit" style=" padding-right: 6px;"></span>Filter</a>
+                    </p>-->
+                </div>
+
+            </div>
+			<div *ngIf="!showPremiumData" id="registration-loader" style="text-align:center"><img src="assets/quote/images/load.gif"></div>
+            <div class="row list-bg" *ngFor="let premiumItem of premiumJson">
+                <div class="col-md-2 text-center">
+                    <div class="zerodep">Your Insurer</div>
+                    <img class="company_img" src="assets/company_logo/{{premiumItem[0].COMPANY_LOGO}}">
+                    <span class="pull-left pb col-xs-12  "><a href="" class="brk_details_a">View Plan Detail</a></span>
+                </div>
+
+                <div class="col-md-2  col-xs-4 text-center price-col" *ngFor="let item of premiumItem">
+                    <div class="zerodep"><span>Zero Dep:</span><abbr> Rs.0</abbr></div>
+                    <strong>{{item.premium_year_text}}</strong>
+
+                    <a class="btn buy-now btn-sm" (click)="premiumTapped('1',item);"><span class="finalpremium">Rs. {{item.TOTAL_PREMIUM}}</span></a>
+                    <span class="pull-left pb col-xs-12  "><a href="" class="brk_details_a">Premium Breakup</a></span>
+
+                </div>
+                
+
+                <div class="col-md-2 addon" style="font-size: 12px; color: #000;">
+
+                    <p class="p-detail"><strong>Policy Detail</strong>
+                    </p>
+                    <div class="row" style="margin-bottom:10px; ">
+                        <div class="col-md-12 col-xs-6">IDV<span style="color: #ccc;"> : </span><span class="pull-left"><b>Rs.{{premiumItem[0].IDV}}</b></span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-4 col-xs-12 detail" style="font-size: 12px; color: #000;">
+
+                    <p class="p-detail"><strong>Special Features</strong>
+                    </p>
+                    <div class="row" style="margin-bottom:10px; ">
+
+                        <div class="col-md-11 row col-xs-12 float-right">
+                            <div class="col-md-4 col-xs-12">
+                                <span>Cashless Garages</span>
+
+                            </div>
+                            <div class="col-md-4 col-xs-12">
+                                <span>24 X 7 Support</span>
+
+                            </div>
+                            <div class="col-md-4 col-xs-12">
+                                <span>Hassle Free  settlement</span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+</div>
+<ng-template #breakupContent let-modal>
+    <span class="close-gb" aria-hidden="true" (click)="modal.dismiss('Cross click')">&times;</span>
+	<div class="modal-body">
+		<form id="quoteModifyForm" [formGroup]="quoteModifyForm" (ngSubmit)="quoteModifySubmit()">
+		<div class="row">
+			<div class="col-md-12">
+				<label for="firstName">IDV between<small> 10-100000 </small></label>
+				<input type="text" class="form-control" formControlName="modifyIDV" placeholder="" value="" required="">
+			</div>
+			<div class="col-md-12">
+				<label for="country">Manufacturing Date</label>
+			</div>
+			<div class="col-md-12">
+				<select class="medium-select custom-select" formControlName="modifyManufacMM">
+					<option value="1">Jan</option>
+					<option value="2">Feb</option>
+					<option value="3">Mar</option>
+					<option value="4">Apr</option>
+					<option value="5">May</option>
+					<option value="6">Jun</option>
+					<option value="7">Jul</option>
+					<option value="8">Aug</option>
+					<option value="9">Sep</option>
+					<option value="10">Oct</option>
+					<option value="11">Nov</option>
+					<option value="12">Dec</option>
+				</select>
+				<select class="medium-select custom-select" formControlName="modifyManufacYY">
+					<option *ngFor="let item of maufacYear">{{item}}</option>
+				</select>
+			</div>
+			<div class="col-md-12" [ngStyle]="{'display':isRenewal==false ? 'none' : '' }">
+				<label for="country">Registration Date</label>
+			</div>
+			<div class="col-md-12" [ngStyle]="{'display':isRenewal==false ? 'none' : '' }">
+				<input type="text" formControlName="modifyRegistrationDate" class="form-control calander" placeholder="yyyy-mm-dd" ngbDatepicker #r="ngbDatepicker" (click)="r.toggle()"/>
+			</div>
+			<div class="col-md-12" [ngStyle]="{'display':isRenewal==false ? 'none' : '' }">
+				<label for="country">Prev. Expiry Date</label>
+			</div>
+			<div class="col-md-12" [ngStyle]="{'display':isRenewal==false ? 'none' : '' }">
+				<input type="text" formControlName="modifyExpiryDate" class="form-control calander" placeholder="yyyy-mm-dd" ngbDatepicker #e="ngbDatepicker" (click)="e.toggle()"/>
+			</div>
+			<div class="col-md-12" [ngStyle]="{'display':isRenewal==false ? 'none' : '' }">
+				<label for="country">Last Claim Made</label>
+			</div>
+			<div class="col-md-12" [ngStyle]="{'display':isRenewal==false ? 'none' : '' }">
+				<select class="custom-select " id="country" required="">
+					<option value="">Never</option>
+					<option>2018</option>
+				</select>
+			</div>
+			<div class="col-md-12" [ngStyle]="{'display':isRenewal==false ? 'none' : '' }">
+				<label for="country">Prev. Insurer</label>
+			</div>
+			<div class="col-md-12" [ngStyle]="{'display':isRenewal==false ? 'none' : '' }">
+				<select class="custom-select " id="country" required="">
+					<option value="">Select Insurer</option>
+					<option>HDFC</option>
+				</select>
+			</div>
+			<div class="col-md-12">
+				<button type="submit" class="btn buy-now btn-lg" >Calculate</button>
+			</div>
+		</div>
+		
+		</form>
+    </div>
+</ng-template>

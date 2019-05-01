@@ -1,0 +1,382 @@
+<div class="container-fluid" style="background:#055ba9;" >
+  <div class="row">
+    <div class="">
+      <nav class="navbar navbar-dark bg-primary navbar-full ">
+        <div class="container">
+          <div class="navbar-header"> <a class="navbar-brand" href="#home"><img src="assets/quote/images/logo.png" class="img-fluid"/></a> </div>
+          <div class="pull-md-left text-xs-center">
+            <ul class="nav navbar-nav">
+              <li class="nav-item hidden-md-down"><a class="nav-link">Car Insurance</a></li>
+              <li class="text-right pull-right mobile-num"><i class="fa fa-phone-square"></i> 033 - 66074257</li>
+              <li class="text-right pull-right mobile-num hidden-md-down"><i class="fa fa-envelope-square"></i> Info@gibl.in</li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+</div>
+<!--Header Part End--> 
+<!--Premium & Insurer Detail--> 
+<!--Premium & Insurer Detail End--> 
+<!--Main Proposal Section Start--> 
+<!-- Master Form-->
+<form id="quoteForm" [formGroup]="quoteForm" (ngSubmit)="quoteSubmit()">
+
+<div class="bd-example container">
+	<div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel" data-interval="false">
+		<div class="carousel-inner">
+			<div class="carousel-item active" id="brand-container">
+				
+				<div class="carousel-caption radio col-md-6 col-xs-12 no-float">
+					
+					<div class="col-md-12 hidden-xs-down hidden-md-down">
+							<h3 class="motor_banner_h3">Get Covarage Of 5 Lacs For<br/><span>Motor At Just Rs.11/day</span></h3><p class="helth_banner_p_ratting">Our Customer’s Rating : 4.7/5</p>
+					</div>
+					<div class="no-float radio-div">
+						<div class="col-md-12 col-xs-12 no-float no-padding m-top ">
+
+							<input class="input-radio100 " id="radio1" type="radio" autocomplete="off" name="is_renewal" value="1" checked="checked">
+							<label class="label-radio100 col-md-4 col-sm-5  col-xs-4 pull-left" for="radio1" style="text-align:left;"> Renewal</label>
+							<input class="input-radio100" id="radio2" type="radio" autocomplete="off" name="is_renewal" value="0">
+							<label class="label-radio100 col-md-8 col-sm-8 col-xs-8 pull-left text-left" style="text-align:left;" for="radio2">I've bought a new car</label>
+						</div>
+					</div>
+					<p><i class="fa fa-long-arrow-right" prev-index="0" cur-index="1" data-target="#carouselExampleCaptions" data-slide-to="1"></i></p>
+					
+					<div class="no-float">
+						<h6 class="rc-copy">Do You have RC Copy? Please upload here for Instant Renewal</h6> </div>
+				</div>
+				<div class="wrap-contact100 col-md-6  col-xs-12 no-float pull-right " id="brand">
+				<div class="col-md-12">
+					<div class="carousel-caption col-xs-12 no-float">
+					
+					<h3>What's the brand of your car?</h3>
+				</div>
+				</div>
+					<div class="row main-tab">
+						<div class="col-md-12 col-xs-12 no-padding">
+							<div class="brand-tab col-md-2  col-xs-2 tab-member active" id="brand-tab">{{brandText}}</div>
+							<div class="model-tab col-md-2  col-xs-2 tab-member" id="model-tab">{{modelText}}</div>
+							<div class="fuel-tab col-md-2  col-xs-2 tab-member" id="fuel-tab">{{fuelText}}</div>
+							<div class="variant-tab col-md-2  col-xs-2 tab-member" id="variant-tab">{{variantText}}</div>
+							<div class="registration-tab col-md-3  col-xs-2 tab-member" id="registration-tab">{{registrationText}}</div>
+						</div>
+					</div>
+					<div class="need-to-select" id="brand_error_msg"></div>
+					<div id="brand-input-container">
+						<div class="wrap-input col-md-10 input100-select financer-desktop no-padding">
+							<select2 [data]="totalBrandList" [cssImport]=true (valueChanged)="brandChanged($event.value)"></select2>
+							<div class="dropDownSelect2"></div>
+						</div>
+						<div class="wrap-input100 input100-select financer-mobile "> <span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span>
+							<input class="select-mobile" id="brand-select-mobile" placeholder="Not in the list? Find your car">
+							<div class="gb-modal">
+								<span class="close-gb">Close</span>
+								<h5>What's the brand of your car?</h5>
+								<select2 [data]="totalBrandList" [cssImport]=true (valueChanged)="brandChanged($event.value)"></select2>
+								<div class="dropDownSelect2"></div>
+							</div>
+						</div>
+						<div class="good-make" id="top-brand">
+							<div class='good-make__item' *ngFor="let item of topBrandList" id="brand_{{item.brand_code}}" (click)="brandTapped($event,item.brand_name,item.brand_code)">
+								<div class='good-make-wrap'><img src='assets/quote/images/logo/{{item.brand_logo}}' alt='{{item.brand_name}}'>
+								<div>{{item.brand_name}}</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="brand-loader" style="text-align: center;"><img style="width: 337px;height: 81px; display:none;" src="assets/quote/images/load.gif"></div>
+				</div>
+			</div>
+			<div class="carousel-item" id="model-container">
+				<div class="col-lg-6 hidden-xs-down hidden-md-down">
+						<h3 class="motor_banner_h3">Get Covarage Of 5 Lacs For<br/><span>Motor At Just Rs.11/day</span></h3>								
+						<h4 class="motor_banner_h4">Super Topup</h4>
+						<p class="motor_banner_p">Upgrade your existing policy cover by Rs. 10 Lakhs<br/> for premium as low as Rs. 878!</p>
+					
+				</div>
+				<div class="wrap-contact100 col-md-6  col-xs-12 no-float pull-right" id="model" >
+				<div class="col-md-12">
+					<div class="carousel-caption col-xs-12 no-float">
+					<p class="pull-left">
+					<i class="fa fa-long-arrow-left" prev-index="0" cur-index="1" data-target="#carouselExampleCaptions" data-slide-to="0"></i> <span class="question" style="display:none;">What is your car’s brand?</span>
+					<i class="fa fa-long-arrow-right" prev-index="0" cur-index="1" data-target="#carouselExampleCaptions" data-slide-to="2"></i> 
+					</p>
+					<h3>What is your car’s model?</h3>
+				</div>
+				</div>
+			  
+					<div class="row main-tab">
+						<div class="col-md-12 col-xs-12 no-padding">
+							<div class="brand-tab col-md-2  col-xs-2 tab-member complete" id="brand-tab">{{brandText}}</div>
+							<div class="model-tab col-md-2  col-xs-2 tab-member active" id="model-tab">{{modelText}}</div>
+							<div class="fuel-tab col-md-2  col-xs-2 tab-member" id="fuel-tab">{{fuelText}}</div>
+							<div class="variant-tab col-md-2  col-xs-2 tab-member" id="variant-tab">{{variantText}}</div>
+							<div class="registration-tab col-md-2  col-xs-2 tab-member" id="registration-tab">{{registrationText}}</div>
+						</div>
+					</div>
+					<div class="need-to-select" id="model_error_msg"></div>
+					<div class="wrap-input col-md-10 input100-select financer-desktop no-padding">
+						<select2 [data]="totalModelList" [cssImport]=true (valueChanged)="modelTapped($event,$event.data[0].text,$event.value)"></select2>
+						<div class="dropDownSelect2"></div>
+					</div>
+					<div class="wrap-input100 input100-select financer-mobile "> <span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span>
+						<input class="select-mobile" id="model-select-mobile" value="{{modelText}}" placeholder="Not in the list? Find your car here">
+						<div class="gb-modal">
+							<span class="close-gb">Close</span>
+							<h5>What is your car’s model?</h5>
+							<select2 [data]="totalModelList" [cssImport]=true (valueChanged)="modelTapped($event,$event.data[0].text,$event.value)"></select2>
+							
+							<div class="dropDownSelect2"></div>
+						</div>
+					</div>
+					<div class="good-make" id="top-model">
+						<div class='top-model__item' *ngFor="let item of topModelList" (click)="modelTapped($event,item.model_name,item.model_code)">
+							<div class='good-make-wrap'>
+								<div>{{item.model_name}}</div>
+							</div>
+						</div>
+					</div>
+				
+				</div>
+			</div>
+			<div class="carousel-item" id="fuel-container">
+			<div class="col-lg-6 hidden-xs-down hidden-md-down">
+							<h3 class="motor_banner_h3">Get Covarage Of 5 Lacs For<br/><span>Motor At Just Rs.11/day</span></h3>								
+							<h4 class="motor_banner_h4">Super Topup</h4>
+							<p class="motor_banner_p">Upgrade your existing policy cover by Rs. 10 Lakhs<br/> for premium as low as Rs. 878!</p>
+						
+							
+					</div>
+				
+				<div class="wrap-contact100 col-md-6  col-xs-12 no-float pull-right" id="fuel">
+				<div class="carousel-caption col-md-12  col-xs-12 no-float">
+					<p class="slide-nav pull-left">
+					<i class="fa fa-long-arrow-left" prev-index="1" cur-index="2" data-target="#carouselExampleCaptions" data-slide-to="1"></i>
+					<span class="question">What's your car's model?</span>
+					<i class="fa fa-long-arrow-right" prev-index="0" cur-index="1" data-target="#carouselExampleCaptions" data-slide-to="3"></i>
+					</p>
+					<h3>What's type of fuel ?</h3>
+				</div>
+					<div class="row main-tab">
+						<div class="col-md-12 col-xs-12 no-padding">
+							<div class="brand-tab col-md-2  col-xs-2 tab-member complete" id="brand-tab">{{brandText}}</div>
+							<div class="model-tab col-md-2  col-xs-2 tab-member complete" id="model-tab">{{modelText}}</div>
+							<div class="fuel-tab col-md-2  col-xs-2 tab-member active" id="fuel-tab">{{fuelText}}</div>
+							<div class="variant-tab col-md-2  col-xs-2 tab-member" id="variant-tab">{{variantText}}</div>
+							<div class="registration-tab col-md-2  col-xs-2 tab-member" id="registration-tab">{{registrationText}}</div>
+						</div>
+					</div>
+					<div class="need-to-select" id="fuel_error_msg"></div>
+					<div class="good-make" style="margin-top:25px;" id="top-fuel" >
+						<div class="good-make__item good-make__item_padding" *ngFor="let item of totalFuelList" (click)="fuelTapped($event,item.fuel_type_text,item.fuel_type,item.model_code)">
+							<div class="good-make-wrap"><img src="assets/quote/images/{{item.fuel_logo}}" alt="Chevrolet" >
+								<div>{{item.fuel_type_text}}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="carousel-item" id="variant-container">
+				<div class="col-lg-6 hidden-xs-down hidden-md-down">
+							<h3 class="motor_banner_h3">Get Covarage Of 5 Lacs For<br/><span>Motor At Just Rs.11/day</span></h3>								
+							<h4 class="motor_banner_h4">Super Topup</h4>
+							<p class="motor_banner_p">Upgrade your existing policy cover by Rs. 10 Lakhs<br/> for premium as low as Rs. 878!</p>
+						
+							
+					</div>
+				<div class="wrap-contact100 col-md-6  col-xs-12 no-float pull-right" id="variant">
+				<div class="carousel-caption col-md-12  col-xs-12 no-float">
+					<p class="slide-nav pull-left">
+					<i class="fa fa-long-arrow-left" prev-index="2" cur-index="3" data-target="#carouselExampleCaptions" data-slide-to="2"></i>
+					<span class="question">What's the fuel type?</span>
+					<i class="fa fa-long-arrow-right" prev-index="0" cur-index="1" data-target="#carouselExampleCaptions" data-slide-to="4"></i>
+					</p>
+					<h3>What's your car's variant?</h3>
+				</div>
+					<div class="row main-tab">
+						<div class="col-md-12 col-xs-12 no-padding">
+							<div class="brand-tab col-md-2  col-xs-2 tab-member complete" id="brand-tab">{{brandText}}</div>
+							<div class="model-tab col-md-2  col-xs-2 tab-member complete" id="model-tab">{{modelText}}</div>
+							<div class="fuel-tab col-md-2  col-xs-2 tab-member complete" id="fuel-tab">{{fuelText}}</div>
+							<div class="variant-tab col-md-2  col-xs-2 tab-member active" id="variant-tab">{{variantText}}</div>
+							<div class="registration-tab col-md-2  col-xs-2 tab-member" id="registration-tab">{{registrationText}}</div>
+							
+						</div>
+					</div>
+					<div class="need-to-select" id="variant_error_msg"></div>
+					<div class="wrap-input col-md-10 input100-select financer-desktop no-padding">
+						<select2 [data]="totalVariantList" [cssImport]=true (valueChanged)="variantTapped($event,$event.value)"></select2>
+						<div class="dropDownSelect2"></div>
+					</div>
+					<div class="wrap-input100 input100-select financer-mobile "> <span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span>
+						<input class="select-mobile" id="variant-select-mobile" placeholder="Not in the list? Find your car here">
+						<div class="gb-modal">
+						<span class="close-gb">Close</span>
+							<h5>What's your car's variant?</h5>
+							<select2 [data]="totalVariantList" [cssImport]=true (valueChanged)="variantTapped($event,$event.value)"></select2>
+							<div class="dropDownSelect2"></div>
+						</div>
+					</div>
+					<div class="good-make" id="top-variant">
+						<div class='top-model__item' *ngFor="let item of topVariantList" (click)="variantTapped($event,item.id)">
+							<div class='good-make-wrap'>
+								<div>{{item.variant_name}}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="carousel-item" id="registration-container">
+				<div class="col-lg-6 hidden-xs-down hidden-md-down">
+							<h3 class="motor_banner_h3">Get Covarage Of 5 Lacs For<br/><span>Motor At Just Rs.11/day</span></h3>								
+							<h4 class="motor_banner_h4">Super Topup</h4>
+							<p class="motor_banner_p">Upgrade your existing policy cover by Rs. 10 Lakhs<br/> for premium as low as Rs. 878!</p>
+						
+							
+					</div>
+				<div class="wrap-contact100 col-md-6 col-xs-12 no-float pull-right" id="registration">
+				<div class="carousel-caption col-md-12 col-xs-12 no-float">
+					<p class="slide-nav pull-left">
+					<i class="fa fa-long-arrow-left" prev-index="3" cur-index="4" data-target="#carouselExampleCaptions" data-slide-to="3"></i>
+					<span class="question">What's the varient?</span>
+					<i class="fa fa-long-arrow-right" prev-index="0" cur-index="1" data-target="#carouselExampleCaptions" data-slide-to="5"></i>
+					</p>
+					<h3>What is your car registration location and year?</h3>
+				</div>
+					<div class="row main-tab">
+						<div class="col-md-12 col-xs-12 no-padding">
+							<div class="brand-tab col-md-2  col-xs-2 tab-member complete" id="brand-tab">{{brandText}}</div>
+							<div class="model-tab col-md-2  col-xs-2 tab-member complete" id="model-tab">{{modelText}}</div>
+							<div class="fuel-tab col-md-2  col-xs-2 tab-member complete" id="fuel-tab">{{fuelText}}</div>
+							<div class="variant-tab col-md-2  col-xs-2 tab-member complete" id="variant-tab">{{variantText}}</div>
+							<div class="registration-tab col-md-3  col-xs-2 tab-member active" id="registration-tab">{{registrationText}}</div>
+							
+						</div>
+					</div>
+					<div class="need-to-select" id="registration_error_msg"></div>
+					<p class="p-qes text-center" style="padding:6px 45px 10px; text-align:center !important;">Where is the car registered?</p>
+					<div class="wrap-input col-md-10 input100-select financer-desktop no-padding">
+						<select2 [data]="totalRTOList" [cssImport]=true (valueChanged)="rtoTapped($event,$event.data[0].text,$event.value)"></select2>
+						<div class="dropDownSelect2"></div>
+					</div>
+					<div class="wrap-input100 input100-select financer-mobile"> <span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span>
+						<input class="select-mobile" id="rto-select-mobile" placeholder="Not in the list? Find your car here">
+						<div class="gb-modal">
+							<span class="close-gb">Close</span>
+							<h5>Where is the car registered?</h5>
+							<select2 [data]="totalRTOList" [cssImport]=true (valueChanged)="rtoTapped($event,$event.data[0].text,$event.value)"></select2>
+							<div class="dropDownSelect2"></div>
+						</div>
+					</div>
+					<div class="good-make">
+						<div class="top-model__item" data-text="Delhi">
+							<div class="good-make-wrap">
+								<div>Delhi</div>
+							</div>
+						</div>
+						<div class="top-model__item" data-text="Kolkata">
+							<div class="good-make-wrap">
+								<div>Kolkata</div>
+							</div>
+						</div>
+						<div class="top-model__item" data-text="Mumbai">
+							<div class="good-make-wrap">
+								<div>Mumbai</div>
+							</div>
+						</div>
+						<div class="top-model__item" data-text="Bangalore">
+							<div class="good-make-wrap">
+								<div>Bangalore</div>
+							</div>
+						</div>
+						<div class="top-model__item" data-text="Hyedrabad">
+							<div class="good-make-wrap">
+								<div>Hyedrabad</div>
+							</div>
+						</div>
+						<div class="top-model__item" data-text="Kochi">
+							<div class="good-make-wrap">
+								<div>Kochi</div>
+							</div>
+						</div>
+						<div class="top-model__item" data-text="Pune">
+							<div class="good-make-wrap">
+								<div>Pune</div>
+							</div>
+						</div>
+						<div class="top-model__item" data-text="Bangalore">
+							<div class="good-make-wrap">
+								<div>Bangalore</div>
+							</div>
+						</div>
+						<div class="top-model__item" data-text="Chennai">
+							<div class="good-make-wrap">
+								<div>Chennai</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+			<div class="carousel-item validate-form">
+				<div class="col-lg-6 hidden-xs-down hidden-md-down">
+							<h3 class="motor_banner_h3">Get Covarage Of 5 Lacs For<br/><span>Motor At Just Rs.11/day</span></h3>								
+							<h4 class="motor_banner_h4">Super Topup</h4>
+							<p class="motor_banner_p">Upgrade your existing policy cover by Rs. 10 Lakhs<br/> for premium as low as Rs. 878!</p>
+						
+							
+					</div>
+				<div class="wrap-contact100 col-md-6  col-xs-12 no-float pull-right" id="personal-detail">
+				<div class="carousel-caption col-md-12  col-xs-12 no-float">
+					<p class="slide-nav  pull-left" prev-index="4" cur-index="5" data-target="#carouselExampleCaptions" data-slide-to="4"><i class="fa fa-long-arrow-left"></i> <span class="question">Car Registration & Location</span></p>
+					<h3>Just continue to view quotes</h3>
+				</div>
+					<p class="p-qes" style="padding-left:18px;">Please give your contact detail for sending policy updates</p>
+					
+					<div class="col-md-12 col-xs-12 ">
+						<div class="wrap-input col-md-5 col-sm-12 input100-select  no-padding validate-input" data-validate ="This is an Invalid mobile number"> <span class="label-input100 pull-left" style=" padding:9px 0 2px 15px;">Enter Your Mobile Number</span>
+							<input class="select-mobile input100" style="padding-left:15px; padding-bottom:15px;" type="text" formControlName="custPhone" autocomplete="off" placeholder="Your 10 Digit Mobile Number" maxlength="10">
+							
+						</div>
+						<div class="wrap-input col-md-6 col-sm-12 input100-select no-padding validate-input" data-validate ="This is an Invalid email id"> <span class="label-input100 pull-left" style=" padding:9px 0 2px 15px;">Enter Your Email Id</span>
+							
+							<input class="select-mobile input100" style="padding-left:15px;padding-bottom:15px;" type="email" formControlName="custEmail" autocomplete="off" placeholder="abc@gmail.com">
+						</div>
+					</div>
+					<div class="col-md-12 text-center pull-left">
+						<div class="container-contact100-form-btn">
+							<div id="registration-loader" style="text-align: center;display:none;"><img style="width: 337px;height: 81px;" src="assets/quote/images/load.gif"></div>
+							<button type="submit" class="contact100-form-btn" id="create_quote_btn" > <span onClick="#car-detail">Continue to View Quotes <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i> </span> </button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--<input type="hidden" id="form_brand" formControlName="brandCode" value="{{form_brand}}">
+<input type="hidden" id="form_model" formControlName="modelCode" value="{{form_model}}">
+<input type="hidden" id="form_fuel" formControlName="fuelType" value="{{form_fuel}}">
+<input type="hidden" id="form_variant" formControlName="variantCode" value="{{form_variant}}">
+<input type="hidden" id="form_rto_code" formControlName="rtoCode" value="{{rto_code}}">
+<input type="hidden" id="form_rto_id" formControlName="rtoId" value="{{rto_id}}">
+<input type="hidden" id="form_car" formControlName="bikeId" value="{{form_car}}">-->
+</form>
+
+<!--Main Proposal Section Start End-->
+<footer class="footer hide-me" id="footer_area">
+  <div class="footer_bottom">
+    <div class="container">
+      <p class="text_btnftr"> ©Copyright 2014 - till now| <a href="https://www.gibl.in" style="color: rgb(108, 108, 108) ! important;
+                      text-decoration: underline;">www.gibl.in</a> | All Rights Reserved | Insurance
+        is the subject matter of solicitation.<br>
+        IRDA License Code No : DB 482/10 Dated 27-05-2016 valid till 26-05-2019, Direct(Non-Life)
+        | Principal Officer : Mr. Sahid Ali | Ph: 033 - 66074257<br>
+      </p>
+      <p class="text_btnftr_new"> Regd. &amp; Corp. Office : GreenLife Insurance Broking Pvt. Ltd., A-4/B, 1st Floor, Rishi Tech Park, Near Unitech, New Town, Kolkata-700156, West Bengal, India </p>
+      <p class="text_btnftr_new"> Designed &amp; Developed By : e-Celtic </p>
+    </div>
+  </div>
+</footer>

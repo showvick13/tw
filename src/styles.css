@@ -1,0 +1,209 @@
+/* You can add global styles to this file, and also import other style files */
+
+@font-face{font-family:'Avenir-Book';src:url('/assets/fonts/Avenir.ttf') format('truetype'), url('/assets/fonts/avenirltstd-book-webfont.svg#AvenirLTStd45BookRegular') format('svg');font-weight:normal;font-style:normal;}
+.card .bg-info{background: #c7f1d6 !important; font-weight: bold;}.card-header{ padding: 0 !important;}.card{margin:15px 0;}
+.card .btn-link{font-weight: bold !important;}
+body {
+    background: #e6e6e6;
+    font-family: 'Avenir-Book' !important ;
+}
+.modal-dialog{height: 100% !important;}
+.modal-content{height: 100% !important;}
+.card-body {
+    flex: 1 1 auto;
+    padding: 0.5rem 0.5rem;
+}
+.card {
+    -moz-box-direction: normal;
+    -moz-box-orient: vertical;
+    background-color: #fff;
+    border-radius: 0.25rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-bottom:1px;
+    border:none;
+}
+.card-header:first-child {
+    border-radius: 0;
+}
+.card-header {
+    background-color: #f7f7f9;
+    margin-bottom: 0;
+    padding: 20px 1.25rem;
+    border:none;
+    
+}
+.card-header a i{
+    float:left;
+    font-size:25px;
+    padding:5px 0;
+    margin:0 25px 0 0px;
+    color:#195C9D;
+}
+.card-header i{
+    float:right;        
+    font-size:30px;
+    width:1%;
+    margin-top:8px;
+    margin-right:10px;
+}
+.card-header a{
+    width:97%;
+    float:left;
+    color:#565656;
+}
+.card-header p{
+    margin:0;
+}
+
+.card-header h3{
+    margin:0 0 0px;
+    font-size:20px;
+    font-family: 'Slabo 27px', serif;
+    font-weight:bold;
+    color:#3fc199;
+}
+.card-block {
+    -moz-box-flex: 1;
+    flex: 1 1 auto;
+    padding: 20px;
+    color:#232323;
+    box-shadow:inset 0px 4px 5px rgba(0,0,0,0.1);
+    border-top:1px soild #000;
+    border-radius:0;
+}
+.collapse.show {
+    display: block;
+}
+.custom-select {
+    display: inline-block;
+    width: 100%;
+    height: calc(2.25rem + 2px);
+    padding: .375rem 1.75rem .375rem .75rem;
+    line-height: 1.5;
+    color: #495057;
+    vertical-align: middle;
+     background-size: 8px 10px;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+.btn-link:hover {
+    color: #0056b3;
+    text-decoration: underline;
+    background-color: transparent;
+    border-color: transparent;
+}
+.btn-link {
+    font-weight: 400;
+    color: #007bff;
+    background-color: transparent;
+}
+.card-body {
+    flex: 1 1 auto;
+    padding: 1.25rem;
+}
+.d-flex {
+    display: flex!important;
+}
+.float-right {
+    float: right!important;
+}
+.btn-primary[_ngcontent-c1] {
+    color: #fc5846 !important;
+    background-color: #ffffff;
+    border-color: #fc5846;
+}
+.text-center {
+    text-align: center!important;
+}
+
+:focus {
+    outline: none !important;
+}
+.invalid-feedback {
+    display: block !important;
+}
+.custom-select:focus
+{
+	box-shadow:none !important;
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 26px;
+    position: absolute;
+    top:-4px !important;
+    right: 1px;
+    width: 20px;
+    left: -57px;
+}
+
+.select2-container .select2-selection--single {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    height: 40px;
+    outline: none;
+    position: relative;
+    border:0;
+}
+
+.select2-container--default .select2-selection--single{border:0 !important;}
+.select2-selection__arrow::before {
+    content: '\f002';
+    font-family: 'FontAwesome';
+    font-size: 22px;
+    color: #555555;
+}
+@media(min-width:992px){
+    .select2-container{min-width: 330px;}
+
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow b{ visibility: hidden;}
+.financer-desktop{padding:5px !important;}
+.select2-container--open .select2-dropdown{top:6px; width: auto !important; min-width: 300px !important; left:-15px !important; }
+
+.select2-container .select2-selection--single .select2-selection__rendered{ font-size: 12px; padding-left: 0 !important;
+}
+.select2-container--default .select2-selection--single{ background: transparent !important;}
+.select2-results__option{font-size: 12px !important;}
+.select2-container--open .select2-dropdown--below{border-top:1px solid !important;}
+.close-gb {
+    font-size: 32px;
+    right: 8px;
+    top: -6px;
+    position: absolute;
+    z-index: 9999999;
+}
+   
+#config-panel-one .card-body{padding:11px 0px !important;}
+#config-panel-one .col-md-12 {
+    padding: 3px 8px;
+}
+#config-panel-one .ngb-dp-day, #config-panel-one  .ngb-dp-week-number,#config-panel-one  .ngb-dp-weekday {
+    width: 24px;
+    height: 24px;
+    font-size: 12px;
+}
+.small-select {
+    width: 71px !important;
+    font-size: 14px !important;
+    padding: 4px !important;
+    margin-right: 9px;
+}
+.medium-select {
+    width: 47% !important;
+    font-size: 14px !important;
+    padding: 4px !important;
+    margin-right: 9px;
+}
+#config-panel-one label {
+    margin-bottom: 0 !important;
+}
