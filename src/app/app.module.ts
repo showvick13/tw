@@ -11,7 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProposalComponent } from './proposal/proposal.component';
 import { ProposalconfirmationComponent } from './proposalconfirmation/proposalconfirmation.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule }   from '@angular/forms'; //gggggfrgf 
 
 @NgModule({
   declarations: [
@@ -33,4 +33,5 @@ import { FormsModule }   from '@angular/forms';
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
